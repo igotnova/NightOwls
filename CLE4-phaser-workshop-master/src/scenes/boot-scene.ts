@@ -11,6 +11,7 @@ export class BootScene extends Phaser.Scene {
 
     preload(): void {
         this.load.image('sky', require('../assets/flag.png'))
+        this.load.image('road', require('../assets/road.jpeg'))
         this.load.image('star', require('../assets/star.png'))
         this.load.image('bomb', require('../assets/civ1.png'))
         this.load.image('bmo', require('../assets/player.gif'))
