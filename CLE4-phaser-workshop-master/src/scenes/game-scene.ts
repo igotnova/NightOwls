@@ -40,7 +40,7 @@ export class GameScene extends Phaser.Scene {
         
         // this.registry.values.score = this.score
         //console.log(this.registry)
-        this.add.image(-20, 0, 'sky').setOrigin(0, 0).setScale(3.5)
+        this.add.image(0, 0, 'road').setOrigin(0, 0).setScale(16)
         this.graphics = this.add.graphics({ fillStyle: { color: 0x00AA00 } })  
         //this.add.text(400, 300,"score:" + this.registry.values.score , { fontFamily: 'Arial Black', fontSize: 70, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 16)
         // // 11 STARS
