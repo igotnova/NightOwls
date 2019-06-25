@@ -5,6 +5,8 @@ import { UI } from "../objects/UI"
 import { Platform } from "../objects/platform"
 import { MovingPlatform } from "../objects/movingplatform"
 import { EndScene } from "./end-scene";
+import { Arcade } from "../arcade/arcade";
+import { Joystick } from "../arcade/input/joystick";
 
 
 export class GameScene extends Phaser.Scene {
@@ -20,13 +22,33 @@ export class GameScene extends Phaser.Scene {
     private score = 0
     public scoretext
     private civhitted : number
+    
+    //Nodig voor joystick 
+    arcade: Arcade
+    joystick: Joystick
+    listener: EventListener
 
 
     
     constructor() {
         super({ key: "GameScene" })
+         //nodig voor joystick
+         this.arcade = new Arcade(this)
+         this.listener = (e: Event) => this.initJoystick(e as CustomEvent)
+         document.addEventListener("joystickcreated", this.listener)
         
-        
+    }
+
+    //nodig voor joystick
+    initJoystick(e:CustomEvent){
+        this.joystick = this.arcade.Joysticks[e.detail]
+        document.addEventListener("joystickcreated", this.listener)
+        //bij knop indrukken 0 tm 5
+        document.addEventListener(this.joystick.ButtonEvents[0], this.playerOneFire)
+    }
+
+    private playerOneFire(){
+        console.log("player one fired!")
     }
 
     init(): void {
@@ -127,6 +149,21 @@ export class GameScene extends Phaser.Scene {
     }
     
      
+    private gameLoop() : void {
+        for(let joystick of this.arcade.Joysticks){
+            joystick.update()
+            
+            // just log the values
+            if(joystick.Left)  console.log('LEFT')
+            if(joystick.Right) console.log('RIGHT')
+            if(joystick.Up)    console.log('UP')
+            if(joystick.Down)  console.log('Down')
+            
+            // use the values to set X and Y velocity of a player
+            this.player.setVelocityX(joystick.X * 400)
+            this.player.setVelocityY(joystick.Y * 400)
+        }
+    }
 
 
 
@@ -147,6 +184,14 @@ export class GameScene extends Phaser.Scene {
         this.graphics.fillRectShape(new Phaser.Geom.Rectangle(20, 20, this.score/10, 20))
        
         this.registry.values.score = this.score
+
+        if(this.joystick) this.joystick.update()
+        //Controleer of joystick bestaat met if(this.joystick)
+        //controleer beweging met this.joystick.Left (Right Up Down)
+        if(this.joystick && this.joystick.Left) console.log('left')
+
+       this.gameLoop()
+           
         
     }
     
