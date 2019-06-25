@@ -108,7 +108,7 @@ export class GameScene extends Phaser.Scene {
      
      private civhit(player : Player , bomb) : void {
         
-        console.log("you hit a civillian " + X)
+        console.log("you hit a civillian ")
         
 
 
