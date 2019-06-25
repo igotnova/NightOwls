@@ -19,13 +19,13 @@ export class GameScene extends Phaser.Scene {
     private graphics
     private score = 0
     public scoretext
-    private civhitted : number
+    private civhitted:number
 
 
     
     constructor() {
         super({ key: "GameScene" })
-        
+        let civhitted = 1
         
     }
 
@@ -107,8 +107,8 @@ export class GameScene extends Phaser.Scene {
      }
      
      private civhit(player : Player , bomb) : void {
-        
-        console.log("you hit a civillian ")
+        this.civhitted++
+        console.log("you hit a civillian" + this.civhitted++)
         
 
 
