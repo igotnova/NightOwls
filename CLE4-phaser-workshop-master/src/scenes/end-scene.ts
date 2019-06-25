@@ -20,7 +20,8 @@ export class EndScene extends Phaser.Scene {
 
         // add text here
 
-        this.add.text(400, 300, 'You lose', { fontFamily: 'Arial Black', fontSize: 70, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 16)
+        this.add.text(400, 250, 'Game over', { fontFamily: 'Arial Black', fontSize: 70, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 16)
+        this.add.text(400, 350, "your score is " + this.registry.values.score, { fontFamily: 'Arial Black', fontSize: 70, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 16)
 
         // add code here to switch to the GameScene, after a mouse click
         let btn1 = this.add.image(100,500, 'mybutton')

@@ -19,17 +19,20 @@ export class GameScene extends Phaser.Scene {
     private graphics
     private score = 0
     public scoretext
-    private civhitted : number = 0
+    private civhitted : number
 
 
     
     constructor() {
         super({ key: "GameScene" })
+        
+        
     }
 
     init(): void {
         console.log("this is a game")
-        
+        this.civhitted = 1
+        console.log(this.civhitted)
         this.physics.world.bounds.width = 800
         this.physics.world.bounds.height = 600
     }
@@ -89,7 +92,7 @@ export class GameScene extends Phaser.Scene {
         //this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this)
         this.physics.add.overlap(this.player, this.grunts, this.hitGrunt, null, this)
 
-        this.cameras.main.setSize(1000,600)
+        this.cameras.main.setSize(800,600)
         //this.cameras.main.startFollow(this.player)
         this.cameras.main.setBounds(0, 0, 600, 600)
     }
@@ -104,15 +107,18 @@ export class GameScene extends Phaser.Scene {
      }
      
      private civhit(player : Player , bomb) : void {
-        this.civhitted++
-        console.log("you hit a civillian")
         
-        if(this.civhitted>=2){this.spawnmob();}
+        console.log("you hit a civillian " + X)
+        
 
-      
-        
+
+        if (this.civhitted==3) {
+            this.civhitted = 0
+            this.spawnmob()
+        }
 
      }
+     
 
      private spawnmob() {
         console.log("spawned grunt")
