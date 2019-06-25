@@ -48,11 +48,13 @@ export class StartScene extends Phaser.Scene {
         // add code here to switch to the GameScene, after a mouse click
         let btn1 = this.add.image(100,500, 'mybutton')
         btn1.setInteractive()
-        btn1.on('pointerdown', (pointer) => {
+        btn1.on("click", (e:Event) => this.scene.start('GameScene'))
+        btn1.on('pointerdown', (pointer)=> {
         this.scene.start('GameScene')
    
    
     })
+    
     }
     update(){
         if(this.joystick) this.joystick.update()

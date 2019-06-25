@@ -7,6 +7,7 @@ export class Grunt extends Phaser.Physics.Arcade.Sprite {
         this.setScale(2.5)
         this.setBounce(5)
         this.setCollideWorldBounds(false)
+        
 
         this.setVelocity(0, Phaser.Math.Between(80, 120));
         //this.setAngularVelocity(30);
