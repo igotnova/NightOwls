@@ -44,7 +44,7 @@ export class GameScene extends Phaser.Scene {
         this.joystick = this.arcade.Joysticks[e.detail]
         document.addEventListener("joystickcreated", this.listener)
         //bij knop indrukken 0 tm 5
-        document.addEventListener(this.joystick.ButtonEvents[0], this.playerOneFire)
+        //document.addEventListener(this.joystick.ButtonEvents[0], this.playerOneFire)
     }
 
     private playerOneFire(){

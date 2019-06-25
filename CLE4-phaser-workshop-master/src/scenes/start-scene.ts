@@ -17,13 +17,17 @@ export class StartScene extends Phaser.Scene {
     //nodig voor joystick
     initJoystick(e:CustomEvent){
         this.joystick = this.arcade.Joysticks[e.detail]
+        console.log(this.joystick);
+        
         document.addEventListener("joystickcreated", this.listener)
         //bij knop indrukken 0 tm 5
-        document.addEventListener(this.joystick.ButtonEvents[0], this.playerOneFire)
+        document.addEventListener(this.joystick.ButtonEvents[0], () => this.playerOneFire())
     }
 
     private playerOneFire(){
-        console.log("player one fired!")
+        console.log('clicked');
+        
+        this.scene.start('GameScene')
     }
 
     init(): void {
