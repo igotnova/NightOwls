@@ -161,8 +161,8 @@ export class GameScene extends Phaser.Scene {
             if(joystick.Down)  console.log('Down')
             
             // use the values to set X and Y velocity of a player
-            this.player.setVelocityX(joystick.X * 400)
-            this.player.setVelocityY(joystick.Y * 400)
+            this.player.setVelocityX(joystick.X * 200)
+            this.player.setVelocityY(joystick.Y * 200)
         }
     }
 
