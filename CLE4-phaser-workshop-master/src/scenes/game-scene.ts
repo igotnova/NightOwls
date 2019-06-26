@@ -21,6 +21,7 @@ export class GameScene extends Phaser.Scene {
     private graphics
     private score = 0
     public scoretext
+
     private civhitted : number
     
     //Nodig voor joystick 
@@ -29,9 +30,12 @@ export class GameScene extends Phaser.Scene {
     listener: EventListener
 
 
+
+
     
     constructor() {
         super({ key: "GameScene" })
+
          //nodig voor joystick
          this.arcade = new Arcade(this)
          this.listener = (e: Event) => this.initJoystick(e as CustomEvent)
@@ -44,11 +48,14 @@ export class GameScene extends Phaser.Scene {
         this.joystick = this.arcade.Joysticks[e.detail]
         document.addEventListener("joystickcreated", this.listener)
         //bij knop indrukken 0 tm 5
-        //document.addEventListener(this.joystick.ButtonEvents[0], this.playerOneFire)
+        //document.addEventListener(this.joystick.ButtonEvents[5], this.playerOneFire)
     }
 
     private playerOneFire(){
         console.log("player one fired!")
+
+        let civhitted = 1
+
     }
 
     init(): void {
@@ -129,8 +136,8 @@ export class GameScene extends Phaser.Scene {
      }
      
      private civhit(player : Player , bomb) : void {
-        
-        console.log("you hit a civillian ")
+        this.civhitted++
+        console.log("you hit a civillian" + this.civhitted++)
         
 
 

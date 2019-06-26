@@ -21,7 +21,7 @@ export class StartScene extends Phaser.Scene {
         
         document.addEventListener("joystickcreated", this.listener)
         //bij knop indrukken 0 tm 5
-        document.addEventListener(this.joystick.ButtonEvents[0], () => this.playerOneFire())
+        document.addEventListener(this.joystick.ButtonEvents[5], () => this.playerOneFire())
     }
 
     private playerOneFire(){
