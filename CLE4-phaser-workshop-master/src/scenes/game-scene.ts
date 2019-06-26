@@ -13,6 +13,7 @@ export class GameScene extends Phaser.Scene {
 
     private player : Player
     private platforms: Phaser.GameObjects.Group
+    private bgtile: Phaser.GameObjects.TileSprite
    // private stars: Phaser.Physics.Arcade.Group
     private bombs: Phaser.GameObjects.Group
     private grunts: Phaser.GameObjects.Group
@@ -67,12 +68,13 @@ export class GameScene extends Phaser.Scene {
     }
 
     create(): void {
+        this.bgtile = this.add.tileSprite(0, 0, 800, 600, 'road').setOrigin(0,0)
         
         this.score = 0;
         
         // this.registry.values.score = this.score
         //console.log(this.registry)
-        this.add.image(0, 0, 'road').setOrigin(0, 0).setScale(16)
+        // this.add.image(0, 0, 'road').setOrigin(0, 0).setScale(16)
         this.graphics = this.add.graphics({ fillStyle: { color: 0x00AA00 } })  
         //this.add.text(400, 300,"score:" + this.registry.values.score , { fontFamily: 'Arial Black', fontSize: 70, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 16)
         // // 11 STARS
@@ -139,6 +141,7 @@ export class GameScene extends Phaser.Scene {
     }
      
      private civhit() : void {
+            this.score += 100
             this.civhitted += 1
           console.log(this.civhitted)
           
@@ -166,7 +169,7 @@ export class GameScene extends Phaser.Scene {
 
 
     update(){
-
+        this.bgtile.tilePositionY -= 1,5
 
 
         this.player.update()
@@ -183,6 +186,7 @@ export class GameScene extends Phaser.Scene {
         this.score++
         
         if (this.civhitted > 2) {
+            
             this.grunts.add(new Grunt(this,Phaser.Math.Between(0, 800),-20),true)
             this.civhitted = 0
             console.log("spawned a mobster" + this.civhitted)

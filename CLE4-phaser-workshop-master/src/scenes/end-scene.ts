@@ -44,7 +44,7 @@ export class EndScene extends Phaser.Scene {
     create(): void {
 
         // change this to a nice game over image
-        this.add.image(0, 0, 'road').setOrigin(0, 0).setScale(16)
+        this.add.image(0, 0, 'road').setOrigin(0, 0)
         this.graphics = this.add.graphics({ fillStyle: { color: 0x00AA00 } })  
         console.log("you lost " + this.registry.values.score)
 

@@ -30,25 +30,25 @@ export class StartScene extends Phaser.Scene {
         console.log('clicked');
         
         this.scene.start('GameScene')
-    }
+        
 
-    init(): void {
+        
+    }    init(): void {        
     }
-
-    preload(): void {
+        preload(): void {
     }
 
     create(): void {
-        this.add.image(0, 0, 'road').setOrigin(0, 0).setScale(16)
         this.graphics = this.add.graphics({ fillStyle: { color: 0x00AA00 } })  
-
-        // add another image here
-
-        // add text here
-
-        this.add.text(400, 300, 'Run Lucha Libre', { fontFamily: 'Arial Black', fontSize: 70, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 16)
-
-        // add code here to switch to the GameScene, after a mouse click
+        this.add.image(0, 0, 'road').setOrigin(0, 0)
+        
+        
+                // add another image here
+        
+                // add text here
+        
+                this.add.text(400, 300, 'Run Lucha Libre', { fontFamily: 'Arial Black', fontSize: 70, color: '#2ac9be' }).setOrigin(0.5).setStroke('#7df2ea', 16)
+                // add code here to switch to the GameScene, after a mouse click
         let btn1 = this.add.image(400,500, 'bmo').setScale(3)
         btn1.setInteractive()
         btn1.on("click", (e:Event) => this.scene.start('GameScene'))
