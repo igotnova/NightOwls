@@ -4,7 +4,8 @@ import { StartScene } from "./scenes/start-scene"
 import { GameScene } from "./scenes/game-scene"
 import { GameScene2 } from "./scenes/game-scene-2"
 import { EndScene } from "./scenes/end-scene"
-import { Arcade } from "./arcade/arcade"
+
+
 
 const config: GameConfig = {
     width: 1000,
