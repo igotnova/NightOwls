@@ -22,7 +22,7 @@ export class GameScene extends Phaser.Scene {
     private score = 0
     public scoretext
 
-    private civhitted : number
+    private civhitted = 0
     
     //Nodig voor joystick 
     arcade: Arcade
@@ -54,13 +54,13 @@ export class GameScene extends Phaser.Scene {
     private playerOneFire(){
         console.log("player one fired!")
 
-        let civhitted = 1
+       
 
     }
 
     init(): void {
         console.log("this is a game")
-        this.civhitted = 1
+        
         console.log(this.civhitted)
         this.physics.world.bounds.width = 800
         this.physics.world.bounds.height = 600
@@ -113,7 +113,7 @@ export class GameScene extends Phaser.Scene {
         //this.physics.add.collider(this.stars, this.platforms)
         this.physics.add.collider(this.player, this.platforms)
         this.physics.add.collider(this.bombs, this.platforms)
-        this.physics.add.collider(this.bombs, this.player, this.civhit)
+        this.physics.add.collider(this.bombs, this.player, this.civhit, null, this)
         this.physics.add.collider(this.grunts, this.platforms)
 
       
@@ -134,26 +134,17 @@ export class GameScene extends Phaser.Scene {
         this.scene.start('EndScene')
 
      }
+     private spawnmob(){
+        this.grunts.add(new Grunt(this,Phaser.Math.Between(0, 800),-20),true)
+    }
      
-     private civhit(player : Player , bomb) : void {
-        this.civhitted++
-        console.log("you hit a civillian" + this.civhitted++)
-        
-
-
-        if (this.civhitted==3) {
-            this.civhitted = 0
-            this.spawnmob()
-        }
-
+     private civhit() : void {
+            this.civhitted += 1
+          console.log(this.civhitted)
+          
      }
      
 
-     private spawnmob() {
-        console.log("spawned grunt")
-        this.grunts.add(new Grunt(this,Phaser.Math.Between(0, 800),-20),true)
-        this.civhitted = 0
-    }
     
      
     private gameLoop() : void {
@@ -175,6 +166,9 @@ export class GameScene extends Phaser.Scene {
 
 
     update(){
+
+
+
         this.player.update()
         
         for(let update of this.bombs.children.entries){
@@ -187,9 +181,16 @@ export class GameScene extends Phaser.Scene {
         // this.registry.values.score = this.score
         // console.log(this.registry.values.score)
         this.score++
-        this.graphics.clear()
-        this.graphics.fillRectShape(new Phaser.Geom.Rectangle(20, 20, this.score/10, 20))
-       
+        
+        if (this.civhitted > 2) {
+            this.grunts.add(new Grunt(this,Phaser.Math.Between(0, 800),-20),true)
+            this.civhitted = 0
+            console.log("spawned a mobster" + this.civhitted)
+        }
+
+        //this.spawnmob()
+
+
         this.registry.values.score = this.score
 
         if(this.joystick) this.joystick.update()
